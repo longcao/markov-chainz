@@ -70,6 +70,20 @@ class TweetParserSpec extends WordSpec
     }
   }
 
+  "TweetParser.replaceAmpersands" should {
+    "replace '&amp;' with '&' for a simple example" in {
+      val s = "me &amp; you"
+
+      replaceAmpersands(s) should === ("me & you")
+    }
+
+    "be a noop for an example without any '&amp;'" in {
+      val s = "hello i am a tweet hello test"
+
+      replaceAmpersands(s) should === (s)
+    }
+  }
+
   "TweetParser.stripExtraWhitespace" should {
     "strip extra whitespace out for a simple example" in {
       val s = "hello      this is a test tweet   "

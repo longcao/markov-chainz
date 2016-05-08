@@ -9,6 +9,8 @@ object TweetParser {
 
   def stripUrls(s: String): String = """http[s]?:\/\/\S+""".r.replaceAllIn(s, "")
 
+  def replaceAmpersands(s: String): String = s.replaceAll("&amp;", "&")
+
   def stripExtraWhitespace(s: String): String = s.replaceAll("\\s+", " ").trim
 
   def isRetweet(tweet: Tweet): Boolean = tweet.text.startsWith("RT")
@@ -28,6 +30,7 @@ object TweetParser {
   def cleanedTweetsFromCsv(file: File): Vector[CleanedTweet] = {
     val cleanerFn = stripHandles _       andThen
                     stripUrls _          andThen
+                    replaceAmpersands _  andThen
                     stripExtraWhitespace
 
     allTweetsFromCsv(file)
