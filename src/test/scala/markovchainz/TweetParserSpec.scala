@@ -70,17 +70,17 @@ class TweetParserSpec extends WordSpec
     }
   }
 
-  "TweetParser.replaceAmpersands" should {
-    "replace '&amp;' with '&' for a simple example" in {
-      val s = "me &amp; you"
+  "TweetParser.replaceHtmlChars" should {
+    "replace html chars with correct string representations for a simple example" in {
+      val s = "me &amp; &lt;you&gt;"
 
-      replaceAmpersands(s) should === ("me & you")
+      replaceHtmlChars(s) should === ("me & <you>")
     }
 
-    "be a noop for an example without any '&amp;'" in {
+    "be a noop for an example without any html chars" in {
       val s = "hello i am a tweet hello test"
 
-      replaceAmpersands(s) should === (s)
+      replaceHtmlChars(s) should === (s)
     }
   }
 
