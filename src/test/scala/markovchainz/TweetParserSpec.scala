@@ -4,14 +4,12 @@ import java.io.File
 
 import org.scalactic.TypeCheckedTripleEquals
 
-import org.scalatest.prop.GeneratorDrivenPropertyChecks
 import org.scalatest.{ Matchers, WordSpec }
 
 import scala.io.Source
 
 class TweetParserSpec extends WordSpec
   with Matchers
-  with GeneratorDrivenPropertyChecks
   with TypeCheckedTripleEquals {
 
   import TweetParser._
