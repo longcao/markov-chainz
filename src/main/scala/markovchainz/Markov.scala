@@ -7,6 +7,9 @@ case class Suffix(word: String) extends Affix
 object Markov {
   type Triplet = List[String]
 
+  val punctuation = Set(":", ";", ".", ",", "!", "?")
+  val smilies = Set(":)", ":(", ":<", ":}", ":|", ":o")
+
   /**
    * Tokenizes tweet.
    *
@@ -59,9 +62,6 @@ object Markov {
    * Intersperses words with spaces and trims ends, accounts for basic smilies.
    */
   def wordsToSentence(words: Vector[String]): String = {
-    val punctuation = Set(":", ";", ".", ",", "!", "?")
-    val smilies = Set(":)", ":(", ":<", ":}", ":|", ":o")
-
     // @TODO really bad implementation probably, clean this up later
     words.zipWithIndex.foldLeft("") { case (acc, (word, i)) =>
       val isLastWordPairSmiley = if (words.isDefinedAt(i - 1)) {
@@ -119,8 +119,13 @@ object Markov {
       }
     }
 
-    // Choose a random prefix to start chain
-    val start = randomFromIterable(affixMap.keys)
+    // Choose a random prefix to start chain,
+    // don't start with punctuation though
+    val start = randomFromIterable {
+      affixMap.keys.filter { prefix =>
+        !punctuation(prefix.word1) && !punctuation(prefix.word2)
+      }
+    }
 
     walkChain(Vector(start.word1, start.word2))
   }
