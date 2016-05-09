@@ -56,16 +56,34 @@ object Markov {
   }
 
   /**
-   * Intersperses word collection with spaces and trims ends.
+   * Intersperses words with spaces and trims ends, accounts for basic smilies.
    */
   def wordsToSentence(words: Vector[String]): String = {
     val punctuation = Set(":", ";", ".", ",", "!", "?")
+    val smilies = Set(":)", ":(", ":<", ":}", ":|", ":o")
 
-    words.foldLeft("") { (sentenceFragment, word) =>
-      if (punctuation(word)) {
-        sentenceFragment + word
+    // @TODO really bad implementation probably, clean this up later
+    words.zipWithIndex.foldLeft("") { case (acc, (word, i)) =>
+      val isLastWordPairSmiley = if (words.isDefinedAt(i - 1)) {
+        smilies(words(i - 1) + word)
       } else {
-        sentenceFragment + " " + word
+        false
+      }
+
+      if (words.isDefinedAt(i + 1) && !isLastWordPairSmiley) {
+        val nextWord = words(i + 1)
+
+        if (punctuation(word) && !smilies(word + nextWord)) {
+          acc + word
+        } else if (smilies(word + nextWord)) {
+          acc + " " + (word + nextWord)
+        } else {
+          acc + " " + word
+        }
+      } else if (!isLastWordPairSmiley) {
+        acc + " " + word
+      } else {
+        acc
       }
     }.trim
   }
