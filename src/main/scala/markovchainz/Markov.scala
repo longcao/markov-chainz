@@ -80,8 +80,10 @@ object Markov {
         } else {
           acc + " " + word
         }
-      } else if (!isLastWordPairSmiley) {
+      } else if (!punctuation(word) && !isLastWordPairSmiley) {
         acc + " " + word
+      } else if (punctuation(word) && !isLastWordPairSmiley) {
+        acc + word
       } else {
         acc
       }

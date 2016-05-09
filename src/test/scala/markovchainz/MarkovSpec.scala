@@ -71,13 +71,13 @@ class MarkovSpec extends WordSpec
   "Markov.wordsToSentence" should {
     "work properly for simple examples" in {
       val words1 = Vector("i", "am", ";", "a", ":", "simple", "sentence", ":", "(", ",", "a", "simple", "one", ".", ":", ")")
-      val words2 = Vector("hello", "world", "what's", "up")
+      val words2 = Vector("hello", "world", "what's", "up", "?")
 
       val sentence1 = wordsToSentence(words1)
       val sentence2 = wordsToSentence(words2)
 
       sentence1 should === ("i am; a: simple sentence :(, a simple one. :)")
-      sentence2 should === ("hello world what's up")
+      sentence2 should === ("hello world what's up?")
     }
 
     "be a noop for empty words" in {
