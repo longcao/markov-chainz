@@ -51,5 +51,5 @@ object Main extends App {
     ex.scheduleAtFixedRate(task, initialDelaySeconds, periodSeconds, TimeUnit.SECONDS)
   }
 
-  postTweetsForever(twitter, 1, 30 * 60)
+  postTweetsForever(twitter, 1, 8 * 60 * 60)
 }
