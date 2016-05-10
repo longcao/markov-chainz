@@ -1,1 +1,1 @@
-web: target/universal/stage/bin/markov-chainz tweets.csv
+worker: target/universal/stage/bin/markov-chainz tweets.csv
