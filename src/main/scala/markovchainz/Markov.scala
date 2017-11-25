@@ -15,7 +15,7 @@ object Markov {
    *
    * Does not delimit on: alphanumerics, single quotes, #, &, [], (), <>, /
    */
-  def tokenize(t: Tweet): List[String] = """[\w'’#\/&\[\]\(\)\<\>]+|[.,!?:;]""".r.findAllIn(t.text).toList
+  def tokenize(s: String): List[String] = """[\w'’#\/&\[\]\(\)\<\>]+|[.,!?:;]""".r.findAllIn(s).toList
 
   /**
    * Using a tokenized sentence, uses a sliding window of 3 by steps of 1 to generate

@@ -13,7 +13,7 @@ trait Markovchainz {
 
     cleanedTweets.map { tweet =>
       // tokenize the tweet
-      val tokenized: List[String] = tokenize(tweet)
+      val tokenized: List[String] = tokenize(tweet.text)
 
       // break up tokenized tweet sentence into triplets with sliding window groups
       val triplets: List[Triplet] = makeTriplets(tokenized)

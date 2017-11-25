@@ -17,7 +17,7 @@ class MarkovSpec extends WordSpec
 
   "Markov.tokenize" should {
     "work properly for a simple example" in {
-      val tweet = RawTweet("i am a simple example, tokenize me")
+      val tweet = "i am a simple example, tokenize me"
       val tokenized = tokenize(tweet)
 
       tokenized.length should === (8)
@@ -25,7 +25,7 @@ class MarkovSpec extends WordSpec
     }
 
     "not delimit on certain special characters: ' ’ # / & [ ] ( ) < >" in {
-      val tweet = RawTweet("#<h>e[l]l(o)'’/&")
+      val tweet = "#<h>e[l]l(o)'’/&"
       val tokenized = tokenize(tweet)
 
       tokenized.length should === (1)

@@ -100,13 +100,13 @@ class TweetParserSpec extends WordSpec
 
   "TweetParser.isRetweet" should {
     "be true if tweet text starts with RT" in {
-      val tweet = RawTweet("RT @test test tweet")
+      val tweet = "RT @test test tweet"
 
       isRetweet(tweet) shouldBe true
     }
 
     "be false if tweet text does not starts with RT" in {
-      val tweet = RawTweet("@test test tweet")
+      val tweet = "@test test tweet"
 
       isRetweet(tweet) shouldBe false
     }
