@@ -11,7 +11,7 @@ object Main {
 
   def getEnvVar(name: String): String =
     sys.env.getOrElse(name, throw new Exception(s"env var $name missing"))
-  
+
   def main(args: Array[String]): Unit = {
     val fileName = args(0)
 
