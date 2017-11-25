@@ -16,10 +16,10 @@ class MarkovchainzSpec extends WordSpec
   import Markovchainz._
   import TweetParser._
 
-  private val fullTweetsFile = new File(self.getClass.getResource("/full-tweets.csv").toURI)
-
   "Full integration of markov chaining" should {
     "work properly given a full tweet dataset" in {
+      val fullTweetsFile = new File("tweets.csv")
+      
       val fullMap = generateFullAffixMap(fullTweetsFile)
 
       (0 to 1000).foreach { _ =>
