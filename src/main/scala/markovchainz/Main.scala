@@ -3,7 +3,7 @@ package markovchainz
 import java.io.File
 
 import twitter4j.conf.ConfigurationBuilder
-import twitter4j.{ Twitter, TwitterFactory }
+import twitter4j.TwitterFactory
 
 object Main {
   import Markovchainz._

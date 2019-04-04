@@ -22,7 +22,7 @@ object TweetParser {
 
   def allTweetsFromCsv(file: File): Vector[Tweet] = {
     file.asCsvReader[Tweet](rfc.withHeader).collect {
-      case Success(tweet) => tweet
+      case Right(tweet) => tweet
     }.toVector
   }
 
