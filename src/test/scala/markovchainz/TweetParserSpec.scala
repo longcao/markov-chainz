@@ -1,7 +1,5 @@
 package markovchainz
 
-import java.io.File
-
 import org.scalactic.TypeCheckedTripleEquals
 
 import org.scalatest.{ Matchers, WordSpec }
@@ -14,14 +12,14 @@ class TweetParserSpec extends WordSpec
 
   import TweetParser._
 
-  private val testTweetsFile = new File(getClass.getResource("/test-tweets.csv").toURI)
+  private def testTweets = getClass.getResourceAsStream("/test-tweets.csv")
 
   "TweetParser.allTweetsFromCsv" should {
     // total lines minus header row
-    val linesCount = Source.fromFile(testTweetsFile).getLines.length - 1
+    val linesCount = Source.fromInputStream(testTweets).getLines.length - 1
 
     "contain all parsed tweets" in {
-      val tweets = allTweetsFromCsv(testTweetsFile)
+      val tweets = allTweetsFromCsv(testTweets)
 
       tweets.length should === (linesCount)
     }
@@ -29,7 +27,7 @@ class TweetParserSpec extends WordSpec
 
   "TweetParser.cleanedTweetsFromCsv" should {
     "contain the correct number of parsed tweets after filtering" in {
-      val tweets = cleanedTweetsFromCsv(testTweetsFile)
+      val tweets = cleanedTweetsFromCsv(testTweets)
       val magicNumOfValidTweets = 15
 
       tweets.length should === (magicNumOfValidTweets)

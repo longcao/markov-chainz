@@ -1,7 +1,5 @@
 package markovchainz
 
-import java.io.File
-
 import twitter4j.conf.ConfigurationBuilder
 import twitter4j.TwitterFactory
 
@@ -29,7 +27,7 @@ object Main {
 
     val twitter = new TwitterFactory(cb.build()).getInstance
 
-    val megaMap = generateFullAffixMap(new File(fileName))
+    val megaMap = generateFullAffixMap(getClass.getResourceAsStream(fileName))
 
     val chain = wordsToSentence(walkChain(megaMap))
 

@@ -1,2 +1,4 @@
 build --strategy=Scalac=worker
+
 test --strategy=Scalac=worker
+test --test_output=all
