@@ -2,14 +2,14 @@ package markovchainz
 
 import cats.implicits._
 
-import java.io.File
+import java.io.InputStream
 
 trait Markovchainz {
   import Markov._
   import TweetParser._
 
-  def generateFullAffixMap(file: File): Map[Prefix, Set[Suffix]] = {
-    val cleanedTweets = cleanedTweetsFromCsv(file)
+  def generateFullAffixMap(is: InputStream): Map[Prefix, Set[Suffix]] = {
+    val cleanedTweets = cleanedTweetsFromCsv(is)
 
     cleanedTweets.map { tweet =>
       // tokenize the tweet

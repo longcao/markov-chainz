@@ -1,1 +1,1 @@
-worker: target/universal/stage/bin/markov-chainz tweets.csv
+worker: app.jar tweets.csv

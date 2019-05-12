@@ -1,6 +1,6 @@
 package markovchainz
 
-import java.io.File
+import java.io.InputStream
 
 import kantan.csv._
 import kantan.csv.ops._
@@ -20,19 +20,19 @@ object TweetParser {
 
   def isRetweet(text: String): Boolean = text.startsWith("RT")
 
-  def allTweetsFromCsv(file: File): Vector[Tweet] = {
-    file.asCsvReader[Tweet](rfc.withHeader).collect {
-      case Success(tweet) => tweet
+  def allTweetsFromCsv(is: InputStream): Vector[Tweet] = {
+    is.asCsvReader[Tweet](rfc.withHeader).collect {
+      case Right(tweet) => tweet
     }.toVector
   }
 
-  def cleanedTweetsFromCsv(file: File): Vector[Tweet] = {
+  def cleanedTweetsFromCsv(is: InputStream): Vector[Tweet] = {
     val cleanerFn = stripHandles _       andThen
                     stripUrls _          andThen
                     replaceHtmlChars _   andThen
                     stripExtraWhitespace
 
-    allTweetsFromCsv(file)
+    allTweetsFromCsv(is)
       .filterNot(tweet => isRetweet(tweet.text))
       .map(tweet => tweet.copy(text = cleanerFn(tweet.text)))
   }

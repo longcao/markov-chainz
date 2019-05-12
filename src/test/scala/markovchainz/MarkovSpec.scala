@@ -5,8 +5,6 @@ import org.scalactic.TypeCheckedTripleEquals
 import org.scalatest.{ Matchers, WordSpec }
 import org.scalatest.prop.GeneratorDrivenPropertyChecks
 
-import scala.io.Source
-
 class MarkovSpec extends WordSpec
   with Generators
   with Matchers
