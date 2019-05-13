@@ -1,1 +1,0 @@
-worker: .jdk/bin/java -jar app.jar tweets.csv
