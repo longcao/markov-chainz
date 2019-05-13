@@ -1,5 +1,5 @@
 # Git SHA of rules_scala we want to use.
-rules_scala_version = "499df53b38f66ace84d8c426f3b5d8a338a4798f"
+rules_scala_version = "ca5a7acff4ff630f68f58b8e01e8c25dbf908fb7"
 
 # Load http_archive functionality built into bazel. This allows us to pull down archives via HTTP.
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
