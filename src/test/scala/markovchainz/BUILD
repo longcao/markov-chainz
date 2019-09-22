@@ -6,7 +6,7 @@ scala_test(
         "//src/test/resources:test-tweets.csv",
     ],
     deps = [
-        "//src/main/scala/markovchainz:markov-chainz",
+        "//src/main/scala/markovchainz:markov-chainz-lib",
         "@third_party_jvm//3rdparty/jvm/org/scalacheck",
         "@third_party_jvm//3rdparty/jvm/org/typelevel:cats_core",
     ],
