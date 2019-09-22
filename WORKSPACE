@@ -1,5 +1,5 @@
 # Git SHA of rules_scala we want to use.
-rules_scala_version = "ca5a7acff4ff630f68f58b8e01e8c25dbf908fb7"
+rules_scala_version = "177e2eeb665899a0f116d20876c8c77b4ef27b98"
 
 # Load http_archive functionality built into bazel. This allows us to pull down archives via HTTP.
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
@@ -17,15 +17,15 @@ http_archive(
 http_archive(
     name = "com_google_protobuf",
     sha256 = "9510dd2afc29e7245e9e884336f848c8a6600a14ae726adb6befdb4f786f0be2",
-    urls = ["https://github.com/protocolbuffers/protobuf/archive/v3.6.1.3.zip"],
     strip_prefix = "protobuf-3.6.1.3",
+    urls = ["https://github.com/protocolbuffers/protobuf/archive/v3.6.1.3.zip"],
 )
 
 # Load the scala_repositories rule from rules_scala.
 load("@io_bazel_rules_scala//scala:scala.bzl", "scala_repositories")
 
 # Call scala_repositories with our specified version of Scala and corresponding sha256 sums of the core Scala jars.
-scala_repositories((
+scala_repositories(scala_version_shas = (
     "2.12.8",
     {
         "scala_compiler": "f34e9119f45abd41e85b9e121ba19dd9288b3b4af7f7047e86dc70236708d170",
@@ -44,3 +44,8 @@ load("//3rdparty:workspace.bzl", "maven_dependencies")
 # then bind these repositories to names that our auto-generated targets in 3rdparty expect.
 # We can then use the targets in 3rdparty/ in our own BUILDs.
 maven_dependencies()
+
+## Setup the third_party repo
+load("//3rdparty:target_file.bzl", "build_external_workspace")
+
+build_external_workspace(name = "third_party_jvm")

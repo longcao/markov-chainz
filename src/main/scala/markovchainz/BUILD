@@ -5,10 +5,10 @@ scala_binary(
     resources = [
         "//:tweets.csv",
     ],
+    visibility = ["//visibility:public"],
     deps = [
-        "//3rdparty/jvm/com/nrinaudo:kantan_csv_generic",
-        "//3rdparty/jvm/org/twitter4j:twitter4j_core",
-        "//3rdparty/jvm/org/typelevel:cats_core"
+        "@third_party_jvm//3rdparty/jvm/com/nrinaudo:kantan_csv_generic",
+        "@third_party_jvm//3rdparty/jvm/org/twitter4j:twitter4j_core",
+        "@third_party_jvm//3rdparty/jvm/org/typelevel:cats_core",
     ],
-    visibility = ["//visibility:public"]
 )
